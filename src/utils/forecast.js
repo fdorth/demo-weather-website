@@ -11,8 +11,10 @@ const forecast = (latitude, longitude, callback) => {
       errorMessage = 'Something went wrong!'
       callback(errorMessage, undefined)
     } else {
+      console.log(body.daily.data)
       const { temperature, precipProbability } = body.currently
-      const message = `It´s currenlty ${temperature} degrees out. There is a ${precipProbability}% chance of rain.`
+      const { temperatureMin, temperatureMax } = body.daily.data[0]
+      const message = `It´s currenlty ${temperature} degrees out. There is a ${precipProbability}% chance of rain. Min temperature of ${temperatureMin} and max of ${temperatureMax}`
       callback(undefined, message)
     }
   })
